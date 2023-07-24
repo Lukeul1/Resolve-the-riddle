@@ -14,6 +14,9 @@ with open(csv_file, 'r', newline='', encoding='utf-8') as file:
     for row in csv_reader:
         company_names.append(row[0])
 
+# Add a colon (:) to the end of each word in the list
+company_names = [name + ':' for name in company_names]
+
 # Write the company names to a text file
 with open(output_file, 'w', encoding='utf-8') as file:
     for name in company_names:

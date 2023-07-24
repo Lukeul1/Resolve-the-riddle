@@ -1,236 +1,236 @@
-Amazon
-Apple
-Google
-Microsoft
-Alibaba
-Facebook
-Berkshire Hathaway
-JP Morgan Chase
-Exxon Mobil
-Johnson & Johnson
-Nestle
-Procter & Gamble
-Toyota
-General Electric
-Chevron
-Coca-Cola
-McDonald's
-Wal-Mart
-IBM
-PepsiCo
-Unilever
-Anheuser-Busch InBev
-Chevron
-Royal Dutch Shell
-BP
-Walgreens Boots Alliance
-CVS Health
-Intel
-Johnson & Johnson
-Goldman Sachs
-Visa
-Merck
-Goldman Sachs
-Verizon
-Anheuser-Busch InBev
-BMW
-Porsche
-Ferrari
-Lamborghini
-Audi
-Inditex
-Total
-Sanofi
-L'Oreal
-AXA
-Voestalpine
-Österreichische Post
-OMV
-Raiffeisen Bank International
-Volkswagen
-Daimler
-Siemens
-Allianz
-BASF
-Deutsche Bank
-EON
-Linde
-DHL
-Deutsche Telekom
-SAP
-Henkel
-Bosch
-Continental
-Deutsche Post
-Bayer
-Metro
-Beiersdorf
-Adidas
-Nivea
-Sony
-Honda
-Nintendo
-Canon
-Panasonic
-Fujifilm
-Mitsubishi
-NEC
-Sharp
-Toshiba
-Tencent
-China Mobile
-China Petroleum
-China State Grid
-China Railway
-Gazprom
-Rosneft
-Sberbank
-Lukoil
-Novatek
-Belaruskali
-Naftogaz
-PKN Orlen
-KGHM
-Ukrtelecom
-Valeo
-MTS
-Nordea Bank
-Roshen
-PZU
-PGE
-Ukrainian Railways
-Agromet
-Kredyt Bank
-Budimex
-Sinopec
-Industrial and Commercial Bank of China
-China National Petroleum
-China CITIC Bank
-Agricultural Bank of China
-China Life Insurance
-China Construction Bank
-China Development Bank
-Ping An Insurance
-Bank of China
-HSBC
-BP
-Royal Dutch Shell
-Tesco
-Unilever
-Vodafone
-GlaxoSmithKline
-AstraZeneca
-British American Tobacco
-BT Group
-Rolls-Royce
-British Airways
-Lloyds Bank
-Anglo American
-Standard Chartered
-GSK Consumer Healthcare
-Royal Bank of Scotland
-Aviva
-Diageo
-Legal & General
-National Grid
-Prudential
-Tesco Bank
-Standard Life
-Avon Products
-BHP
-Commonwealth Bank of Australia
-National Australia Bank
-ANZ
-Westpac
-Rio Tinto
-Telstra
-Qantas
-Woodside Petroleum
-Wesfarmers
-Woolworths
-Boral
-AMP
-Wesfert
-IAG
-OTP Bank
-Magyar Telekom
-Mol Group
-Erste Bank
-Magyar Posta
-Lietuvos Energija
-Danske Bank
-Ericsson
-H&M
-Volvo
-IKEA
-Nordea Bank
-Telia Eesti
-Swedbank
-SEB Bank
-Danske Bank
-Eesti Energia
-Banco Santander
-Telefónica
-Repsol
-Mapfre
-Iberdrola
-Ferrovial
-Banco Sabadell
-ACS
-FerroAtlántica
-Banco Popular
-Banco de Valencia
-Banco Bilbao Vizcaya Argentaria (BBVA)
-Petrobras
-Banco do Brasil
-Vale
-Itaú Unibanco
-Banco Bradesco
-Samsung
-Hyundai
-LG
-Kia
-SK Group
-Posco
-Hyundai Heavy Industries
-Lotte Group
-CJ Group
-Hanwha Group
-MTN Group
-Naspers
-FirstRand
-Standard Bank Group
-Sasol
-Dangote Group
-MTN Group
-Cemex
-América Móvil
-Femsa
-Grupo Bimbo
-Petróleos de México
-Rimi Baltic
-Latvijas Gāze
-Dienas Bizness
-CME
-Skoda
-Cencosud
-CEZ Group
-LAN Airlines
-Fonterra
-Air New Zealand
-TelstraClear
-Vector
-Carrefour
-Danone
-Pernod Ricard
-Statoil
-Telenor
-DNV GL
-Kongsberg
-Yara
-Elisa
-Nokia
-Fortum
-Stora Enso
-Reykjavik Energy
-Bombardier Inc.
+Amazon:
+Apple:
+Google:
+Microsoft:
+Alibaba:
+Facebook:
+Berkshire Hathaway:
+JP Morgan Chase:
+Exxon Mobil:
+Johnson & Johnson:
+Nestle:
+Procter & Gamble:
+Toyota:
+General Electric:
+Chevron:
+Coca-Cola:
+McDonald's:
+Wal-Mart:
+IBM:
+PepsiCo:
+Unilever:
+Anheuser-Busch InBev:
+Chevron:
+Royal Dutch Shell:
+BP:
+Walgreens Boots Alliance:
+CVS Health:
+Intel:
+Johnson & Johnson:
+Goldman Sachs:
+Visa:
+Merck:
+Goldman Sachs:
+Verizon:
+Anheuser-Busch InBev:
+BMW:
+Porsche:
+Ferrari:
+Lamborghini:
+Audi:
+Inditex:
+Total:
+Sanofi:
+L'Oreal:
+AXA:
+Voestalpine:
+Österreichische Post:
+OMV:
+Raiffeisen Bank International:
+Volkswagen:
+Daimler:
+Siemens:
+Allianz:
+BASF:
+Deutsche Bank:
+EON:
+Linde:
+DHL:
+Deutsche Telekom:
+SAP:
+Henkel:
+Bosch:
+Continental:
+Deutsche Post:
+Bayer:
+Metro:
+Beiersdorf:
+Adidas:
+Nivea:
+Sony:
+Honda:
+Nintendo:
+Canon:
+Panasonic:
+Fujifilm:
+Mitsubishi:
+NEC:
+Sharp:
+Toshiba:
+Tencent:
+China Mobile:
+China Petroleum:
+China State Grid:
+China Railway:
+Gazprom:
+Rosneft:
+Sberbank:
+Lukoil:
+Novatek:
+Belaruskali:
+Naftogaz:
+PKN Orlen:
+KGHM:
+Ukrtelecom:
+Valeo:
+MTS:
+Nordea Bank:
+Roshen:
+PZU:
+PGE:
+Ukrainian Railways:
+Agromet:
+Kredyt Bank:
+Budimex:
+Sinopec:
+Industrial and Commercial Bank of China:
+China National Petroleum:
+China CITIC Bank:
+Agricultural Bank of China:
+China Life Insurance:
+China Construction Bank:
+China Development Bank:
+Ping An Insurance:
+Bank of China:
+HSBC:
+BP:
+Royal Dutch Shell:
+Tesco:
+Unilever:
+Vodafone:
+GlaxoSmithKline:
+AstraZeneca:
+British American Tobacco:
+BT Group:
+Rolls-Royce:
+British Airways:
+Lloyds Bank:
+Anglo American:
+Standard Chartered:
+GSK Consumer Healthcare:
+Royal Bank of Scotland:
+Aviva:
+Diageo:
+Legal & General:
+National Grid:
+Prudential:
+Tesco Bank:
+Standard Life:
+Avon Products:
+BHP:
+Commonwealth Bank of Australia:
+National Australia Bank:
+ANZ:
+Westpac:
+Rio Tinto:
+Telstra:
+Qantas:
+Woodside Petroleum:
+Wesfarmers:
+Woolworths:
+Boral:
+AMP:
+Wesfert:
+IAG:
+OTP Bank:
+Magyar Telekom:
+Mol Group:
+Erste Bank:
+Magyar Posta:
+Lietuvos Energija:
+Danske Bank:
+Ericsson:
+H&M:
+Volvo:
+IKEA:
+Nordea Bank:
+Telia Eesti:
+Swedbank:
+SEB Bank:
+Danske Bank:
+Eesti Energia:
+Banco Santander:
+Telefónica:
+Repsol:
+Mapfre:
+Iberdrola:
+Ferrovial:
+Banco Sabadell:
+ACS:
+FerroAtlántica:
+Banco Popular:
+Banco de Valencia:
+Banco Bilbao Vizcaya Argentaria (BBVA):
+Petrobras:
+Banco do Brasil:
+Vale:
+Itaú Unibanco:
+Banco Bradesco:
+Samsung:
+Hyundai:
+LG:
+Kia:
+SK Group:
+Posco:
+Hyundai Heavy Industries:
+Lotte Group:
+CJ Group:
+Hanwha Group:
+MTN Group:
+Naspers:
+FirstRand:
+Standard Bank Group:
+Sasol:
+Dangote Group:
+MTN Group:
+Cemex:
+América Móvil:
+Femsa:
+Grupo Bimbo:
+Petróleos de México:
+Rimi Baltic:
+Latvijas Gāze:
+Dienas Bizness:
+CME:
+Skoda:
+Cencosud:
+CEZ Group:
+LAN Airlines:
+Fonterra:
+Air New Zealand:
+TelstraClear:
+Vector:
+Carrefour:
+Danone:
+Pernod Ricard:
+Statoil:
+Telenor:
+DNV GL:
+Kongsberg:
+Yara:
+Elisa:
+Nokia:
+Fortum:
+Stora Enso:
+Reykjavik Energy:
+Bombardier Inc.:
