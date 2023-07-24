@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#word-container {
+    margin: 30px auto;
+    text-align: center;
+}
+
+#word-inputs input {
+    width: 40px; /* Increase the width of input fields */
+    height: 40px; /* Increase the height of input fields */
+    text-align: center;
+    margin: 5px;
+    font-size: 20px; /* Increase the font size of characters in input fields */
+}
+
+#result-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#result-message {
+    font-size: 18px;
+}
+
+#lives {
+    font-size: 16px;
+}
+
+#keyboard-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.keyboard-row {
+    margin-bottom: 10px;
+}
+
+.keyboard-key {
+    display: inline-block;
+    width: 40px; /* Increase the width of keyboard buttons */
+    height: 40px; /* Increase the height of keyboard buttons */
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+#how-to-play {
+    margin-top: 20px;
+}
+
+#how-to-play h3 {
+    margin-bottom: 10px;
+}
+
+#how-to-play-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#how-to-play-list li {
+    margin-bottom: 10px;
+}
+
+.keyboard-key {
+    width: 30px; /* Set a fixed width for regular alphabet buttons */
+    margin: 5px; /* Add some margin to create space between buttons */
+  }
+  
+  /* Styles for the "Enter" and "Backspace" buttons */
+  .keyboard-key-special {
+    width: auto; /* Set the width to automatically adjust based on the text length */
+    margin: 5px; /* Add some margin to create space between buttons */
+  }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resolve the Riddle Brand Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Resolve the Riddle Brand Game</h1>
+
+    <div id="word-container">
+        <h2>Guess the Brand:</h2>
+        <div id="word-inputs"></div>
+        <button id="check-button">Check</button>
+    </div>
+
+    <div id="keyboard-container"></div>
+
+    <div id="result-container">
+        <h2 id="result-message"></h2>
+        <p id="lives">Lives: <span id="remaining-lives">3</span></p>
+        <div id="how-to-play">
+            <h3>How to Play:</h3>
+            <ul id="how-to-play-list">
+                <li>Guess the brand by entering one letter at a time in the input fields or using the on-screen keyboard.</li>
+                <li>A riddle has been provided for the brand.</li>
+                <li>Click the "Check" button to check if your guess is correct.</li>
+                <li>You have 3 lives. Each incorrect guess will deduct 1 life.</li>
+                <li>If you run out of lives, the game is over.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="jscript.js"></script>
+</body>
+</html>
