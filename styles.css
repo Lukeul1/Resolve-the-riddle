@@ -13,13 +13,30 @@ h1 {
     text-align: center;
 }
 
-#word-inputs input,
-#word-inputs span {
-    width: 40px; /* Increase the width of input fields */
-    height: 40px; /* Increase the height of input fields */
+/* Style the input field to show the focus outline */
+#word-inputs input:focus {
+    outline: 2px solid blue;
+}
+
+/* Hide the default outline for the keyboard buttons */
+.keyboard-key:focus,
+.keyboard-key-special:focus {
+    outline: none;
+}
+
+/* Add a hover effect for better user interaction */
+.keyboard-key:hover,
+.keyboard-key-special:hover {
+    background-color: #eee;
+}
+
+/* Increase the width of the input box */
+#word-inputs input {
+    width: 400px; /* Set a fixed width of 400px (4 times the original width) */
+    height: 40px;
     text-align: center;
     margin: 5px;
-    font-size: 20px; /* Increase the font size of characters in input fields */
+    font-size: 20px;
 }
 
 #result-container {
@@ -44,12 +61,14 @@ h1 {
     margin-bottom: 10px;
 }
 
-.keyboard-key {
+.keyboard-key,
+.keyboard-key-special {
     display: inline-block;
-    width: 40px; /* Increase the width of keyboard buttons */
-    height: 40px; /* Increase the height of keyboard buttons */
+    width: 40px;
+    height: 40px;
     margin-right: 5px;
     font-size: 18px;
+    cursor: pointer;
 }
 
 #how-to-play {

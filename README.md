@@ -2,14 +2,11 @@
 
 To do:
 
-The on-screen keyboard backspace is temperamental and seems to
-work only for words after the first.
+Changed the input fields to a text box field. The text box field 
+doesn't currently function as it should. After selecting buttons on-screen,
+they should appear in the text field. 
 
-After pressing a key on the external keyboard it does
-not automatically move to the next input field. pressing
-enter on the external keyboard should check the word.
-
-The answer displayed after three attempts displays a :
-at the end.
+The answer entered into the text field should then be checked
+with the brand name randomly selected. A life should be deducted for each.
 
 Create riddles and display under the bold riddle.

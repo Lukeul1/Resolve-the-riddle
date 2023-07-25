@@ -25,41 +25,25 @@ function startGame() {
 
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
-            const words = targetWord.split(/(\s|-)/); // Split the targetWord by spaces and hyphens
 
-            // Update the riddle text without revealing the targetWord
-            riddleElement.innerHTML = '<strong>Riddle:</strong> Guess the brand name.';
+            // Create a single text box for the user to enter the entire word
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.pattern = '[a-zA-Z- ]*'; // Restrict input to English alphabet letters, spaces, and hyphens
+            input.placeholder = 'Enter the brand name';
+            input.autocomplete = 'off'; // Turn off autocomplete for the input field
 
-            // Create input fields for each character of each word
-            words.forEach(word => {
-                if (word === ' ' || word === '-') {
-                    // Create a space or hyphen element
-                    const spaceOrHyphen = document.createElement('span');
-                    spaceOrHyphen.textContent = word;
-                    wordInputsContainer.appendChild(spaceOrHyphen);
-                } else {
-                    // Create input fields for each character in the word
-                    for (let i = 0; i < word.length; i++) {
-                        const input = document.createElement('input');
-                        input.type = 'text';
-                        input.maxLength = 1;
-                        input.pattern = '[a-zA-Z-]'; // Restrict input to English alphabet letters and hyphens
-                        wordInputsContainer.appendChild(input);
+            // Set the size attribute to be 4 times the length of the originalTargetWord
+            const wordLength = originalTargetWord.length;
+            const size = wordLength * 4; // Make it 4 times longer
+            input.size = size;
 
-                        // Add the event listener for the 'input' event on each input field
-                        input.addEventListener('input', handleExternalKeyboardInput);
-                    }
-                }
-            });
+            wordInputsContainer.appendChild(input);
 
             // Enable the Check button and set lives to 3 for a new game
             checkButton.disabled = false;
             lives = 3;
             remainingLives.textContent = lives;
-
-            // Move focus to the first input field
-            inputFields = Array.from(wordInputsContainer.children).filter(input => input.tagName === 'INPUT' || input.tagName === 'SPAN'); // Assign the inputFields here
-            inputFields.find(input => input.tagName === 'INPUT').focus(); // Focus on the first input field
 
             // Clear the previous result message and re-enable the check button
             resultMessage.textContent = '';
@@ -69,6 +53,7 @@ function startGame() {
             console.error('Error fetching the brand names:', error);
         });
 }
+
 
 // Call the function to start the game when the page loads
 document.addEventListener('DOMContentLoaded', startGame);
@@ -82,37 +67,9 @@ function checkWord() {
         return;
     }
 
-    // Create an array to store the user's guess for each word
-    const userWordArray = [];
-    let currentIndex = 0;
+    const userInput = inputFields[0].value.trim().toLowerCase();
 
-    inputFields.forEach((input, index) => {
-        if (input.tagName === 'INPUT') {
-            const inputValue = input.value.trim();
-            input.value = ''; // Clear the input field
-
-            // If the input is not empty, add it to the userWordArray for the corresponding word
-            if (inputValue) {
-                userWordArray[currentIndex] = inputValue.toLowerCase();
-            } else {
-                // If the input field is empty, add a space or a hyphen between words as needed
-                userWordArray[currentIndex] = originalTargetWord[index] === '-' ? '-' : ' ';
-            }
-
-            // Move to the next word when a space is encountered
-            if (originalTargetWord[index] === ' ') {
-                currentIndex++;
-            }
-        } else {
-            // If the current input is a span element (space or hyphen), add it to the userWordArray
-            userWordArray[currentIndex] = originalTargetWord[index];
-        }
-    });
-
-    // Concatenate the userWordArray to form the user's complete guess
-    const userWord = userWordArray.join('');
-
-    if (userWord === originalTargetWord.toLowerCase()) {
+    if (userInput === originalTargetWord.toLowerCase()) {
         resultMessage.textContent = 'Correct!';
         resultMessage.style.color = 'green';
         checkButton.disabled = true;
@@ -126,37 +83,26 @@ function checkWord() {
             // No more lives left, reveal the answer
             checkButton.disabled = true;
 
-            // Disable input fields after the game is over (lives = 0)
-            inputFields.forEach(input => {
-                if (input.tagName === 'INPUT') {
-                    input.disabled = true;
-                }
-            });
+            // Disable the input field after the game is over (lives = 0)
+            inputFields[0].disabled = true;
 
             // Show the hyphens and spaces correctly in the answer
             const visibleAnswer = originalTargetWord
                 .split('')
                 .map((char, index) => {
-                    if (inputFields[index].tagName === 'INPUT') {
-                        return inputFields[index].value !== '' ? char : ' ';
-                    } else {
-                        return char === '-' ? '-' : ' ';
-                    }
+                    return userInput[index] !== ' ' ? char : ' ';
                 })
                 .join('');
 
-            // Replace the placeholder " " with the actual brand name
-            const actualBrandName = originalTargetWord.replace(/-/g, ' ');
-            resultMessage.textContent = `You lost! The brand name was "${actualBrandName}".`;
+            resultMessage.textContent = `You lost! The brand name was "${visibleAnswer}".`;
         }
     }
 
-    // Remove focus from the input fields
-    inputFields.forEach(input => {
-        if (input.tagName === 'INPUT') {
-            input.blur();
-        }
-    });
+    // Clear the input field after checking
+    inputFields[0].value = '';
+
+    // Remove focus from the input field
+    inputFields[0].blur();
 }
 
 // Define the on-screen keyboard keys
@@ -194,40 +140,21 @@ keyboardKeys.forEach(row => {
 });
 
 function handleKeyboardInput(key) {
-    // Find the first empty input field
-    const emptyInput = inputFields.find(input => input.value === '');
-    const lastNonEmptyInput = inputFields.reduceRight((found, input) => found || (input.value !== '' && input), null);
+    // Get the focused input field (only one input field in this case)
+    const focusedInput = document.activeElement;
 
-    if (emptyInput) {
-        if (key === 'Enter') {
-            // Trigger the check when the Enter button is clicked
-            checkWord();
-        } else if (key === 'Backspace') {
-            // If Backspace is clicked, remove the character from the last non-empty input field
-            if (lastNonEmptyInput) {
-                const currentValue = lastNonEmptyInput.value;
-                lastNonEmptyInput.value = currentValue.slice(0, -1); // Remove the last character
-                lastNonEmptyInput.focus(); // Set focus back to the last non-empty input field
-            }
-        } else {
-            const inputValue = key.toLowerCase();
+    // Check if the focused element is an input field
+    if (focusedInput.tagName === 'INPUT') {
+        // Append the pressed key to the focused input field
+        focusedInput.value += key.toLowerCase();
 
-            if (/^[a-zA-Z]$/.test(inputValue)) {
-                // If the input is a letter, populate the empty input field
-                emptyInput.value = inputValue;
-
-                // Find the index of the current empty input field
-                const currentIndex = inputFields.indexOf(emptyInput);
-
-                // Set focus on the next input field (if available)
-                if (currentIndex < inputFields.length - 1) {
-                    inputFields[currentIndex + 1].focus();
-                } else {
-                    // Do not trigger the check automatically
-                }
-            }
-        }
+        // Update the inputFields array with the updated input field
+        inputFields[0] = focusedInput;
     }
+
+    // Trigger the 'input' event on the input field to update the state
+    const inputEvent = new Event('input', { bubbles: true });
+    focusedInput.dispatchEvent(inputEvent);
 }
 
 function handleExternalKeyboardInput(event) {
