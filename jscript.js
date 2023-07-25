@@ -9,10 +9,10 @@ riddleElement.innerHTML = '<strong>Riddle:</strong> Guess the brand name.';
 document.getElementById('result-container').insertBefore(riddleElement, document.getElementById('how-to-play'));
 
 let lives = 3;
+let originalTargetWord = ''; // Store the original target word
 let targetWord = '';
 let inputFields = []; // Declare the inputFields array outside the startGame function
 
-// Function to fetch the brand names from the 'company_names.txt' file and start the game
 function startGame() {
     fetch('company_names.txt')
         .then(response => response.text())
@@ -20,27 +20,37 @@ function startGame() {
             const brandNames = data.trim().split('\n');
 
             // Randomly select a brand name from the list
-            targetWord = brandNames[Math.floor(Math.random() * brandNames.length)].trim();
-
-            // Remove the colon (:) from the end of the word, if present
-            targetWord = targetWord.replace(/:$/, '');
-
-            // Update the riddle text
-            riddleElement.innerHTML = '<strong>Riddle:</strong> Guess the brand name.';
+            originalTargetWord = brandNames[Math.floor(Math.random() * brandNames.length)].trim();
+            targetWord = originalTargetWord; // Set targetWord to the original word initially
 
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
-            const maxLength = targetWord.length;
-            for (let i = 0; i < maxLength; i++) {
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.maxLength = 1;
-                input.pattern = '[a-zA-Z]'; // Restrict input to English alphabet letters only
-                wordInputsContainer.appendChild(input);
-        
-                // Add the event listener for the 'input' event on each input field
-                input.addEventListener('input', handleExternalKeyboardInput);
-            }
+            const words = targetWord.split(/(\s|-)/); // Split the targetWord by spaces and hyphens
+
+            // Update the riddle text without revealing the targetWord
+            riddleElement.innerHTML = '<strong>Riddle:</strong> Guess the brand name.';
+
+            // Create input fields for each character of each word
+            words.forEach(word => {
+                if (word === ' ' || word === '-') {
+                    // Create a space or hyphen element
+                    const spaceOrHyphen = document.createElement('span');
+                    spaceOrHyphen.textContent = word;
+                    wordInputsContainer.appendChild(spaceOrHyphen);
+                } else {
+                    // Create input fields for each character in the word
+                    for (let i = 0; i < word.length; i++) {
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = 1;
+                        input.pattern = '[a-zA-Z-]'; // Restrict input to English alphabet letters and hyphens
+                        wordInputsContainer.appendChild(input);
+
+                        // Add the event listener for the 'input' event on each input field
+                        input.addEventListener('input', handleExternalKeyboardInput);
+                    }
+                }
+            });
 
             // Enable the Check button and set lives to 3 for a new game
             checkButton.disabled = false;
@@ -48,8 +58,8 @@ function startGame() {
             remainingLives.textContent = lives;
 
             // Move focus to the first input field
-            inputFields = Array.from(wordInputsContainer.children); // Assign the inputFields here
-            inputFields[0].focus();
+            inputFields = Array.from(wordInputsContainer.children).filter(input => input.tagName === 'INPUT' || input.tagName === 'SPAN'); // Assign the inputFields here
+            inputFields.find(input => input.tagName === 'INPUT').focus(); // Focus on the first input field
 
             // Clear the previous result message and re-enable the check button
             resultMessage.textContent = '';
@@ -72,15 +82,37 @@ function checkWord() {
         return;
     }
 
-    const userWord = inputFields
-        .map(input => {
-            const inputValue = input.value.toLowerCase();
-            input.value = ''; // Clear the input field
-            return inputValue;
-        })
-        .join('');
+    // Create an array to store the user's guess for each word
+    const userWordArray = [];
+    let currentIndex = 0;
 
-    if (userWord === targetWord.toLowerCase()) {
+    inputFields.forEach((input, index) => {
+        if (input.tagName === 'INPUT') {
+            const inputValue = input.value.trim();
+            input.value = ''; // Clear the input field
+
+            // If the input is not empty, add it to the userWordArray for the corresponding word
+            if (inputValue) {
+                userWordArray[currentIndex] = inputValue.toLowerCase();
+            } else {
+                // If the input field is empty, add a space or a hyphen between words as needed
+                userWordArray[currentIndex] = originalTargetWord[index] === '-' ? '-' : ' ';
+            }
+
+            // Move to the next word when a space is encountered
+            if (originalTargetWord[index] === ' ') {
+                currentIndex++;
+            }
+        } else {
+            // If the current input is a span element (space or hyphen), add it to the userWordArray
+            userWordArray[currentIndex] = originalTargetWord[index];
+        }
+    });
+
+    // Concatenate the userWordArray to form the user's complete guess
+    const userWord = userWordArray.join('');
+
+    if (userWord === originalTargetWord.toLowerCase()) {
         resultMessage.textContent = 'Correct!';
         resultMessage.style.color = 'green';
         checkButton.disabled = true;
@@ -89,23 +121,42 @@ function checkWord() {
         resultMessage.style.color = 'red';
         lives--;
         remainingLives.textContent = lives;
-        inputFields.forEach((input, index) => {
-            input.value = ''; // Clear the input fields
-            if (index === 0) {
-                input.focus(); // Set focus to the initial input field
-            }
-        });
+
         if (lives <= 0) {
-            resultMessage.textContent = `You lost! The brand name was "${targetWord}".`;
+            // No more lives left, reveal the answer
             checkButton.disabled = true;
 
             // Disable input fields after the game is over (lives = 0)
-            inputFields.forEach(input => (input.disabled = true));
+            inputFields.forEach(input => {
+                if (input.tagName === 'INPUT') {
+                    input.disabled = true;
+                }
+            });
+
+            // Show the hyphens and spaces correctly in the answer
+            const visibleAnswer = originalTargetWord
+                .split('')
+                .map((char, index) => {
+                    if (inputFields[index].tagName === 'INPUT') {
+                        return inputFields[index].value !== '' ? char : ' ';
+                    } else {
+                        return char === '-' ? '-' : ' ';
+                    }
+                })
+                .join('');
+
+            // Replace the placeholder " " with the actual brand name
+            const actualBrandName = originalTargetWord.replace(/-/g, ' ');
+            resultMessage.textContent = `You lost! The brand name was "${actualBrandName}".`;
         }
     }
 
     // Remove focus from the input fields
-    inputFields.forEach(input => input.blur());
+    inputFields.forEach(input => {
+        if (input.tagName === 'INPUT') {
+            input.blur();
+        }
+    });
 }
 
 // Define the on-screen keyboard keys
@@ -193,4 +244,3 @@ function handleExternalKeyboardInput(event) {
         }
     }
 }
-

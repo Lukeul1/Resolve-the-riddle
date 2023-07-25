@@ -13,7 +13,8 @@ h1 {
     text-align: center;
 }
 
-#word-inputs input {
+#word-inputs input,
+#word-inputs span {
     width: 40px; /* Increase the width of input fields */
     height: 40px; /* Increase the height of input fields */
     text-align: center;
