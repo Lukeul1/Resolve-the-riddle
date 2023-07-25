@@ -37,6 +37,9 @@ function startGame() {
                 input.maxLength = 1;
                 input.pattern = '[a-zA-Z]'; // Restrict input to English alphabet letters only
                 wordInputsContainer.appendChild(input);
+        
+                // Add the event listener for the 'input' event on each input field
+                input.addEventListener('input', handleExternalKeyboardInput);
             }
 
             // Enable the Check button and set lives to 3 for a new game
@@ -63,8 +66,12 @@ document.addEventListener('DOMContentLoaded', startGame);
 // Add event listener to the Check button
 checkButton.addEventListener('click', checkWord);
 
-// Function to handle the word checking logic
 function checkWord() {
+    if (lives <= 0) {
+        // If lives are already 0, do nothing and prevent further guesses
+        return;
+    }
+
     const userWord = inputFields
         .map(input => {
             const inputValue = input.value.toLowerCase();
@@ -91,6 +98,9 @@ function checkWord() {
         if (lives <= 0) {
             resultMessage.textContent = `You lost! The brand name was "${targetWord}".`;
             checkButton.disabled = true;
+
+            // Disable input fields after the game is over (lives = 0)
+            inputFields.forEach(input => (input.disabled = true));
         }
     }
 
@@ -132,7 +142,6 @@ keyboardKeys.forEach(row => {
     keyboardContainer.appendChild(keyboardRow);
 });
 
-// Function to handle on-screen keyboard input
 function handleKeyboardInput(key) {
     // Find the first empty input field
     const emptyInput = inputFields.find(input => input.value === '');
@@ -145,7 +154,9 @@ function handleKeyboardInput(key) {
         } else if (key === 'Backspace') {
             // If Backspace is clicked, remove the character from the last non-empty input field
             if (lastNonEmptyInput) {
-                lastNonEmptyInput.value = '';
+                const currentValue = lastNonEmptyInput.value;
+                lastNonEmptyInput.value = currentValue.slice(0, -1); // Remove the last character
+                lastNonEmptyInput.focus(); // Set focus back to the last non-empty input field
             }
         } else {
             const inputValue = key.toLowerCase();
@@ -167,3 +178,19 @@ function handleKeyboardInput(key) {
         }
     }
 }
+
+function handleExternalKeyboardInput(event) {
+    const currentInput = event.target;
+    const currentValue = currentInput.value;
+
+    if (currentValue) {
+        // If the input field has a value (i.e., a character is entered via the external keyboard)
+        const currentIndex = inputFields.indexOf(currentInput);
+
+        // Set focus on the next input field (if available)
+        if (currentIndex < inputFields.length - 1) {
+            inputFields[currentIndex + 1].focus();
+        }
+    }
+}
+
