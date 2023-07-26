@@ -67,9 +67,9 @@ function checkWord() {
         return;
     }
 
-    const userInput = inputFields[0].value.trim().toLowerCase();
+    const userInput = inputFields[0].value.trim();
 
-    if (userInput === originalTargetWord.toLowerCase()) {
+    if (userInput === originalTargetWord) {
         resultMessage.textContent = 'Correct!';
         resultMessage.style.color = 'green';
         checkButton.disabled = true;
@@ -82,8 +82,6 @@ function checkWord() {
         if (lives <= 0) {
             // No more lives left, reveal the answer
             checkButton.disabled = true;
-
-            // Disable the input field after the game is over (lives = 0)
             inputFields[0].disabled = true;
 
             // Show the hyphens and spaces correctly in the answer
@@ -103,6 +101,9 @@ function checkWord() {
 
     // Remove focus from the input field
     inputFields[0].blur();
+
+    // Update the inputFields array with the latest input field
+    inputFields[0] = document.querySelector('#word-inputs input');
 }
 
 // Define the on-screen keyboard keys
@@ -141,12 +142,21 @@ keyboardKeys.forEach(row => {
 
 function handleKeyboardInput(key) {
     // Get the focused input field (only one input field in this case)
-    const focusedInput = document.activeElement;
+    const focusedInput = document.querySelector('#word-inputs input');
 
     // Check if the focused element is an input field
     if (focusedInput.tagName === 'INPUT') {
-        // Append the pressed key to the focused input field
-        focusedInput.value += key.toLowerCase();
+        if (key === 'Backspace') {
+            // Handle the "Backspace" button press
+            focusedInput.value = focusedInput.value.slice(0, -1);
+        } else if (key === 'Enter') {
+            // Handle the "Enter" button press (optional)
+            // You can add specific behavior for the "Enter" button if needed
+            // For this game, we are not using "Enter" functionality
+        } else {
+            // Append the pressed key to the focused input field
+            focusedInput.value += key.toLowerCase();
+        }
 
         // Update the inputFields array with the updated input field
         inputFields[0] = focusedInput;
@@ -156,6 +166,9 @@ function handleKeyboardInput(key) {
     const inputEvent = new Event('input', { bubbles: true });
     focusedInput.dispatchEvent(inputEvent);
 }
+
+// Add event listener for external keyboard input (keypress)
+document.addEventListener('keypress', handleExternalKeyboardInput);
 
 function handleExternalKeyboardInput(event) {
     const currentInput = event.target;

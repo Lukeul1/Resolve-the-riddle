@@ -2,11 +2,7 @@
 
 To do:
 
-Changed the input fields to a text box field. The text box field 
-doesn't currently function as it should. After selecting buttons on-screen,
-they should appear in the text field. 
-
-The answer entered into the text field should then be checked
-with the brand name randomly selected. A life should be deducted for each.
+Text box field needs work - only accepts answer occasionally,
+need to check on-screen keyboard.
 
 Create riddles and display under the bold riddle.
