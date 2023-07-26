@@ -26,7 +26,7 @@ function startGame() {
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
 
-            // Create a single text box for the user to enter the entire word
+             // Create a single text box for the user to enter the entire word
             const input = document.createElement('input');
             input.type = 'text';
             input.pattern = '[a-zA-Z- ]*'; // Restrict input to English alphabet letters, spaces, and hyphens
@@ -38,7 +38,11 @@ function startGame() {
             const size = wordLength * 4; // Make it 4 times longer
             input.size = size;
 
+
             wordInputsContainer.appendChild(input);
+
+            // Update the inputFields array with the new input field
+            inputFields[0] = input;
 
             // Enable the Check button and set lives to 3 for a new game
             checkButton.disabled = false;
@@ -56,7 +60,11 @@ function startGame() {
 
 
 // Call the function to start the game when the page loads
-document.addEventListener('DOMContentLoaded', startGame);
+document.addEventListener('DOMContentLoaded', () => {
+    // Update the inputFields array with the initial input field
+    inputFields[0] = document.querySelector('#word-inputs input');
+    startGame();
+});
 
 // Add event listener to the Check button
 checkButton.addEventListener('click', checkWord);
