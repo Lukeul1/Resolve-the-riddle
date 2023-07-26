@@ -8,6 +8,10 @@ brand_names = [name.strip() + ':' for name in brand_names if len(name.strip()) >
 # Remove any extra colons from the brand names
 brand_names = [name.rstrip(':') + ':' for name in brand_names]
 
+# Add the phrase after each brand name
+phrase = " sentence, sentence, sentence;"
+brand_names = [name + phrase for name in brand_names]
+
 # Write the modified list back to the "ukBrandNames.txt" file
 with open('ukBrandNames.txt', 'w') as file:
     file.write('\n'.join(brand_names))

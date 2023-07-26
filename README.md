@@ -2,10 +2,8 @@
 
 To do:
 
-Have two lists of names, the first worldwide companies
-and the second UK brand names.
+Create riddles and display under the bold riddle. For now, 
+just add the sentence sentence part under the riddle.
 
-Instead of writing riddles, just add the word the phrase "sentence, sentence, sentence" after each answer. Ensure each word is on
-a new line.
-
-Create riddles and display under the bold riddle.
+Future developments will require manually going through the list
+and updating the brand names to be more recognisable.
