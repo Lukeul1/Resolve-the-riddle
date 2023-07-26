@@ -5,7 +5,7 @@ const resultMessage = document.getElementById('result-message');
 const remainingLives = document.getElementById('remaining-lives');
 const riddleElement = document.createElement('p');
 riddleElement.id = 'riddle';
-riddleElement.innerHTML = '<strong>Riddle:</strong> Guess the brand name.';
+riddleElement.innerHTML = '<strong>Riddle</strong>';
 document.getElementById('result-container').insertBefore(riddleElement, document.getElementById('how-to-play'));
 
 let lives = 3;
@@ -26,7 +26,7 @@ function startGame() {
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
 
-             // Create a single text box for the user to enter the entire word
+            // Create a single text box for the user to enter the entire word
             const input = document.createElement('input');
             input.type = 'text';
             input.pattern = '[a-zA-Z- ]*'; // Restrict input to English alphabet letters, spaces, and hyphens
@@ -37,7 +37,6 @@ function startGame() {
             const wordLength = originalTargetWord.length;
             const size = wordLength * 4; // Make it 4 times longer
             input.size = size;
-
 
             wordInputsContainer.appendChild(input);
 
@@ -57,7 +56,6 @@ function startGame() {
             console.error('Error fetching the brand names:', error);
         });
 }
-
 
 // Call the function to start the game when the page loads
 document.addEventListener('DOMContentLoaded', () => {
@@ -182,7 +180,7 @@ function handleKeyboardInput(key) {
 document.addEventListener('keydown', handleExternalKeyboardInput);
 
 // Add event listener for external keyboard input (keydown)
-document.addEventListener('keydown', handleKeyboardInput);
+document.addEventListener('keydown', handleExternalKeyboardInput);
 
 function handleExternalKeyboardInput(event) {
     const currentInput = document.activeElement; // Get the currently focused element
@@ -207,3 +205,4 @@ function handleExternalKeyboardInput(event) {
         }
     }
 }
+
