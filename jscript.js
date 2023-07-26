@@ -34,7 +34,11 @@ function startGame() {
             // Randomly select a brand name and its corresponding riddle from the list
             const randomIndex = Math.floor(Math.random() * brandNames.length);
             originalTargetWord = brandNames[randomIndex];
-            const selectedRiddle = riddles[randomIndex];
+            let selectedRiddle = riddles[randomIndex];
+
+            // Format the riddle by moving commas to the next line and removing semicolons
+            selectedRiddle = selectedRiddle.replace(/,/g, ',<br>');
+            selectedRiddle = selectedRiddle.replace(/;/g, '');
 
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
@@ -65,8 +69,8 @@ function startGame() {
             resultMessage.textContent = '';
             resultMessage.style.color = '';
 
-            // Display the riddle text
-            riddleTextElement.textContent = selectedRiddle; // Use the riddle text element to display the riddle
+            // Display the formatted riddle text
+            riddleTextElement.innerHTML = selectedRiddle; // Use innerHTML to interpret line breaks ("<br>") in the HTML content
         })
         .catch(error => {
             console.error('Error fetching the brand names:', error);
