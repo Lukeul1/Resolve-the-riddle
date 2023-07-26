@@ -93,12 +93,15 @@ function checkWord() {
             inputFields[0].disabled = true;
 
             // Show the hyphens and spaces correctly in the answer
-            const visibleAnswer = originalTargetWord
+            let visibleAnswer = originalTargetWord
                 .split('')
                 .map((char, index) => {
                     return userInput[index] !== ' ' ? char : ' ';
                 })
                 .join('');
+
+            // Remove the ':' at the end of each word
+            visibleAnswer = visibleAnswer.replace(/:$/, '');
 
             resultMessage.textContent = `You lost! The brand name was "${visibleAnswer}".`;
         }
