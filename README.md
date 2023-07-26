@@ -2,7 +2,8 @@
 
 To do:
 
-Text box field needs work - only accepts answer occasionally,
-need to check on-screen keyboard.
+Text box field needs work - only accepts answer occasionally and 
+the check field does not work, neither does enter on-screen or
+externally.
 
 Create riddles and display under the bold riddle.

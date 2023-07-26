@@ -167,20 +167,29 @@ function handleKeyboardInput(key) {
     focusedInput.dispatchEvent(inputEvent);
 }
 
-// Add event listener for external keyboard input (keypress)
-document.addEventListener('keypress', handleExternalKeyboardInput);
+// Add event listener for external keyboard input (keydown)
+document.addEventListener('keydown', handleExternalKeyboardInput);
 
 function handleExternalKeyboardInput(event) {
-    const currentInput = event.target;
+    const currentInput = document.activeElement; // Get the currently focused element
     const currentValue = currentInput.value;
 
-    if (currentValue) {
+    if (currentValue && currentInput.tagName === 'INPUT') {
         // If the input field has a value (i.e., a character is entered via the external keyboard)
         const currentIndex = inputFields.indexOf(currentInput);
 
         // Set focus on the next input field (if available)
         if (currentIndex < inputFields.length - 1) {
             inputFields[currentIndex + 1].focus();
+        }
+
+        // Check if the "Enter" key is pressed
+        if (event.key === 'Enter') {
+            // Prevent the default behavior of the "Enter" key (form submission)
+            event.preventDefault();
+
+            // Trigger the click event of the "Check" button
+            checkButton.click();
         }
     }
 }
