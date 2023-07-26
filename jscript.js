@@ -158,9 +158,9 @@ function handleKeyboardInput(key) {
             // Handle the "Backspace" button press
             focusedInput.value = focusedInput.value.slice(0, -1);
         } else if (key === 'Enter') {
-            // Handle the "Enter" button press (optional)
-            // You can add specific behavior for the "Enter" button if needed
-            // For this game, we are not using "Enter" functionality
+            // Handle the "Enter" button press
+            // Trigger the click event of the "Check" button
+            checkButton.click();
         } else {
             // Append the pressed key to the focused input field
             focusedInput.value += key.toLowerCase();
@@ -177,6 +177,9 @@ function handleKeyboardInput(key) {
 
 // Add event listener for external keyboard input (keydown)
 document.addEventListener('keydown', handleExternalKeyboardInput);
+
+// Add event listener for external keyboard input (keydown)
+document.addEventListener('keydown', handleKeyboardInput);
 
 function handleExternalKeyboardInput(event) {
     const currentInput = document.activeElement; // Get the currently focused element
