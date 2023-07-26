@@ -6,7 +6,10 @@ const remainingLives = document.getElementById('remaining-lives');
 const riddleElement = document.createElement('p');
 riddleElement.id = 'riddle';
 riddleElement.innerHTML = '<strong>Riddle</strong>';
+const riddleTextElement = document.createElement('p'); // Add this line to create the element for riddle text
+riddleTextElement.id = 'riddle-text'; // Add this line to set an ID for the riddle text element
 document.getElementById('result-container').insertBefore(riddleElement, document.getElementById('how-to-play'));
+document.getElementById('result-container').insertBefore(riddleTextElement, document.getElementById('how-to-play')); // Add this line to insert the riddle text element
 
 let lives = 3;
 let originalTargetWord = ''; // Store the original target word
@@ -17,11 +20,21 @@ function startGame() {
     fetch('ukBrandNames.txt')
         .then(response => response.text())
         .then(data => {
-            const brandNames = data.trim().split('\n');
+            const brandData = data.trim().split('\n');
+            const brandNames = [];
+            const riddles = [];
 
-            // Randomly select a brand name from the list
-            originalTargetWord = brandNames[Math.floor(Math.random() * brandNames.length)].trim();
-            targetWord = originalTargetWord; // Set targetWord to the original word initially
+            // Parse the brand names and riddles from the fetched data
+            for (const entry of brandData) {
+                const [brandName, riddle] = entry.split(':');
+                brandNames.push(brandName.trim());
+                riddles.push(riddle.trim());
+            }
+
+            // Randomly select a brand name and its corresponding riddle from the list
+            const randomIndex = Math.floor(Math.random() * brandNames.length);
+            originalTargetWord = brandNames[randomIndex];
+            const selectedRiddle = riddles[randomIndex];
 
             // Clear the input fields from any previous games
             wordInputsContainer.innerHTML = '';
@@ -51,6 +64,9 @@ function startGame() {
             // Clear the previous result message and re-enable the check button
             resultMessage.textContent = '';
             resultMessage.style.color = '';
+
+            // Display the riddle text
+            riddleTextElement.textContent = selectedRiddle; // Use the riddle text element to display the riddle
         })
         .catch(error => {
             console.error('Error fetching the brand names:', error);
