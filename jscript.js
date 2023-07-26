@@ -14,7 +14,7 @@ let targetWord = '';
 let inputFields = []; // Declare the inputFields array outside the startGame function
 
 function startGame() {
-    fetch('company_names.txt')
+    fetch('ukBrandNames.txt')
         .then(response => response.text())
         .then(data => {
             const brandNames = data.trim().split('\n');
